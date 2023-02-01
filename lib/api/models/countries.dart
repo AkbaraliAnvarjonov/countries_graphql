@@ -1,4 +1,3 @@
-import 'package:countries_graphql/api/models/language.dart';
 
 class CountryModel {
   const CountryModel({
@@ -7,7 +6,7 @@ class CountryModel {
     required this.currency,
     required this.emoji,
     required this.native,
-    required this.languageModel,
+    required this.code,
   });
 
   final String name;
@@ -15,14 +14,16 @@ class CountryModel {
   final String capital;
   final String emoji;
   final String currency;
-  final List<LanguageModel> languageModel;
-
+  final String code;
   factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
       name: json['name'] as String? ?? "",
       native: json['native'] as String? ?? "",
       capital: json['capital'] as String? ?? "",
       emoji: json['emoji'] as String? ?? "",
       currency: json['currency'] as String? ?? "",
-      languageModel: (json['languages']as List).map((e) => LanguageModel.fromJson(e))
-          as List<LanguageModel>);
+      code: json['code'] as String? ?? "");
 }
+
+
+// languageModel: (json['languages'] as List)
+//           .map((e) => LanguageModel.fromJson(e)) as List<LanguageModel>);

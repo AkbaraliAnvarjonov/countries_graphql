@@ -35,7 +35,7 @@ class JobsPage extends StatelessWidget {
                                 jobsApiClient: JobsApiClient.create(),
                               )..add(CountryFetchStarted(
                                   counrtyCode:
-                                      state.jobs[index].languageModel[0].code.toUpperCase())),
+                                      state.jobs[index].code.toUpperCase())),
                               child: const CountryPage(),
                             ),
                           ));

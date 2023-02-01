@@ -26,16 +26,12 @@ class JobsApiClient {
     capital
     emoji
     currency
-     languages {
-      code
-      name
-    }
+    code    
     }
   }''')),
     );
     if (result.hasException) throw GetJobsRequestFailure();
     final data = result.data?['countries'] as List;
-    print("SUCCESS DATA:${result.data.toString()}");
     return data
         .map((dynamic e) => CountryModel.fromJson(e as Map<String, dynamic>))
         .toList();
@@ -44,23 +40,19 @@ class JobsApiClient {
   Future<CountryModel> getSingleCountry(String countryCode) async {
     final result = await _graphQLClient.query(
       QueryOptions(document: gql(''' query GetCountry() {
-   {
+   
     country(code: "$countryCode") {
     name
     native
     capital
     emoji
     currency
-    languages {
-      code
-      name
-    }
-  }
+    code    
 }
   }''')),
     );
     if (result.hasException) throw GetJobsRequestFailure();
-    final data = result.data?['country'] as CountryModel;
+    final data = result.data?['country'];
     print("SUCCESS DATA:${result.data.toString()}");
     return data;
   }
